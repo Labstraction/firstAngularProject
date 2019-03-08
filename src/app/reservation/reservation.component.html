@@ -1,0 +1,25 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <img width="1500" alt="Angular Logo"
+    src="https://www.noisiamofuturo.it/wp-content/uploads/2018/01/Sport-featured-image.jpg">
+</div>
+<div *ngIf="reservations">
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Nome Membro</th>
+      <th>Nome Campo</th>
+      <th>Data di Prenotazione</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let reservation of reservations'>
+      <td> <a [routerLink]="['/members',reservation.memberId]">{{reservation.memberName}}</a></td>
+      <td><a [routerLink]="['/courts',reservation.fieldId]">{{reservation.fieldName}}</a></td>
+      <td>{{reservation.date}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

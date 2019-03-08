@@ -1,4 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -6,25 +5,23 @@
   <img width="1500" alt="Angular Logo"
     src="https://www.noisiamofuturo.it/wp-content/uploads/2018/01/Sport-featured-image.jpg">
 </div>
-<div *ngIf="courts">
-<h2>Ecco il nuovo campo da tennis: </h2>
-<input type='text' [(ngModel)]='court.name' />
+<div *ngIf="members">
 <table class='table'>
   <thead>
     <tr>
-      <th>Nome campo</th>
-      <th>Sport</th>
-      <th>Prezzo</th>
+      <th>Nome Membro</th>
+      <th>Cognome</th>
+      <th>Data di Registrazione</th>
       <!-- <th>Ulteriori Info</th> -->
       <!-- <th>Bottone</th> -->
       <!-- <th>Max Players</th> -->
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor='let court of courts'>
-      <td [ngStyle]="{'color': court._sportType === 'tennis' ? 'black' : 'red'}"> <a [routerLink]="['/courts',court.id]">{{court.name}}</a></td>
-      <td>{{court.sportString}}</td>
-      <td>{{court.price}}</td>
+    <tr *ngFor='let member of members'>
+      <td> <a [routerLink]="['/members',member.id]">{{member.name}}</a></td>
+      <td>{{member.surname}}</td>
+      <td>{{member.dateOfRegistration}}</td>
       <!-- <td *ngIf="court.sportType==='tennis'"><input type="checkbox" [checked]="court.isCovered" onclick="return false;">
         <label>Coperto</label></td>
       <td *ngIf="court.sportType==='soccer'"><input type="checkbox" [checked]="court.isSeven" onclick="return false;">
