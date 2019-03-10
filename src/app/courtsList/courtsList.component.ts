@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Court } from "./model/Court";
-import { ICourt } from "./model/ICourt";
-import { CourtsService } from './model/courts.service';
+import { ICourt } from '../model/ICourt';
+import { CourtsService } from '../model/courts.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-
-  styleUrls: ['./app.component.css']
+  selector: 'app-courtsList',
+  templateUrl: './courtsList.component.html',
+  styleUrls: ['./courtsList.component.css']
 })
-export class AppComponent implements OnInit{
+export class CourtsListComponent implements OnInit{
   title = "Uber Sport Manager";
 
   constructor(private courtsService: CourtsService) {}

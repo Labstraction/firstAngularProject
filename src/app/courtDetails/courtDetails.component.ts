@@ -7,12 +7,12 @@ import { count } from 'rxjs/operators';
 import {ICourt} from '../model/ICourt';
 
 @Component({
-  selector: 'app-court-detail',
-  templateUrl: './courtDetail.component.html',
-  styleUrls: ['./courtDetail.component.css']
+  selector: 'app-court-details',
+  templateUrl: './courtDetails.component.html',
+  styleUrls: ['./courtDetails.component.css']
 })
 
-export class CourtDetailComponent implements OnInit {
+export class CourtDetailsComponent implements OnInit {
   pageTitle = 'Court Detail';
   errorMessage = '';
   court: ICourt | undefined;

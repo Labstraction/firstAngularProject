@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MembersService } from '../model/Members.service';
+import { MembersService } from '../model/members.service';
 import { IMember} from '../model/IMember';
 import { IReservation } from '../model/IReservation';
 
