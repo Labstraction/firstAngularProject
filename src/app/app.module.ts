@@ -11,7 +11,10 @@ import { CourtDetailsComponent } from './courtDetails/courtDetails.component';
 import { MemberDetailsComponent } from "./memberDetails/memberDetails.component";
 import { MembersListComponent } from "./membersList/membersList.component";
 import { ReservationComponent } from "./reservation/reservation.component";
+import { ChallengeListComponent } from "./challenge-list/challenge-list.component";
 import { PoliziottoGrassoService } from "./PoliziottoGrasso.service";
+import { ChallengeDetailComponent } from "./challenge-detail/challenge-detail.component";
+import { ReservationDetailComponent } from "./reservation-detail/reservation-detail.component";
 
 @NgModule({
    declarations: [
@@ -22,7 +25,10 @@ import { PoliziottoGrassoService } from "./PoliziottoGrasso.service";
       ReservationComponent,     
       CourtDetailsComponent,
       MemberDetailsComponent,
-      MaxPlayerComponent  
+      MaxPlayerComponent,
+      ChallengeListComponent,
+      ChallengeDetailComponent,
+      ReservationDetailComponent
    ],
    
    imports: [
@@ -32,6 +38,7 @@ import { PoliziottoGrassoService } from "./PoliziottoGrasso.service";
          { path: 'welcome', component: WelcomePageComponent},
          { path: 'members', component: MembersListComponent},
          { path: 'reservations', component: ReservationComponent},
+         { path: 'challenges', component: ChallengeListComponent},
          {
             path: 'courts/:id',
             canActivate: [PoliziottoGrassoService],
@@ -41,6 +48,16 @@ import { PoliziottoGrassoService } from "./PoliziottoGrasso.service";
             path: 'members/:id',
             canActivate: [PoliziottoGrassoService],
             component: MemberDetailsComponent
+          },
+          {
+            path: 'challenges/:id',
+            canActivate: [PoliziottoGrassoService],
+            component: ChallengeDetailComponent
+          },
+          {
+            path: 'reservations/:id',
+            canActivate: [PoliziottoGrassoService],
+            component: ReservationDetailComponent
           },
 
          { path: '', redirectTo: 'welcome', pathMatch: 'full' },

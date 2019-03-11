@@ -1,22 +1,25 @@
+<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-</div>
-<div *ngIf="members">
+    
+    </div>
+<div *ngIf="challenges">
+
 <table class='table'>
   <thead>
     <tr>
-      <th>Nome Membro</th>
-      <th>Cognome</th>
-      <th>Data di Registrazione</th>
+      <th>Nome</th>
+      <th>Numero Posti Disponibili</th>
+      <th>Visualizza Prenotazion</th>
       <!-- <th>Ulteriori Info</th> -->
       <!-- <th>Bottone</th> -->
       <!-- <th>Max Players</th> -->
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor='let member of members'>
-      <td> <a [routerLink]="['/members',member.id]">{{member.name}}</a></td>
-      <td>{{member.surname}}</td>
-      <td>{{member.dateOfRegistration}}</td>
+    <tr *ngFor='let challenge of challenges'>
+      <td><a [routerLink]="['/challenges',challenge.id]">{{challenge.title}}</a></td>
+      <td>{{challenge.availableMembers}}</td>
+      <td><a [routerLink]="['/reservations',challenge.reservationId]">Visualizza</a></td>
       <!-- <td *ngIf="court.sportType==='tennis'"><input type="checkbox" [checked]="court.isCovered" onclick="return false;">
         <label>Coperto</label></td>
       <td *ngIf="court.sportType==='soccer'"><input type="checkbox" [checked]="court.isSeven" onclick="return false;">
