@@ -1,6 +1,7 @@
 <div style="text-align:center">
 </div>
 <div *ngIf="members">
+    <h2>Questi sono i membri iscritti: </h2>
 <table class='table'>
   <thead>
     <tr>
@@ -29,4 +30,8 @@
     </tr>
   </tbody>
 </table>
+
+<br>
+<a [routerLink]="['/member-insert']"><button>Inserisci nuovo membro</button></a>
+
 </div>

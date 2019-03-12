@@ -1,0 +1,121 @@
+<div class="card">
+  <div class="card-header">
+    Inserisci un nuovo membro:
+  </div>
+
+  <div class="card-body">
+    <form novalidate
+          #newMemberF="ngForm"
+          (ngSubmit)="save(newMemberF)"
+          >
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="memberNameId">Nome: </label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="memberNameId"
+                 type="text"
+                 placeholder="Nome (richiesto)"
+                 required
+                 minlength="3"
+                 [(ngModel)]= member.name
+                 name="memberName"
+                 #memberNameVar="ngModel"
+                 [ngClass]="{'is-invalid': (memberNameVar.touched || memberNameVar.dirty) && !memberNameVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="memberNameVar.errors?.required">
+              Inserisci il nome del membro.
+            </span>
+            <span *ngIf="memberNameVar.errors?.minlength">
+              Il nome del membro deve essere più lungo di 3 caratteri.
+            </span>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="memberSurnameId">Cognome: </label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="memberSurnameId"
+                 type="text"
+                 placeholder="Cognome (richiesto)"
+                 required
+                 maxlength="30"
+                 [(ngModel)]= member.surname
+                 name="memberSurname"
+                 #memberSurnameVar="ngModel"
+                 [ngClass]="{'is-invalid': (memberSurnameVar.touched || memberSurnameVar.dirty) && !memberSurnameVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="memberSurnameVar.errors?.required">
+              Inserisci il cognome del membro.
+            </span>
+            <span *ngIf="memberSurnameVar.errors?.maxlength">
+              Il cognome del membro deve avere al massimo 30 caratteri.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="memberDateOfRegistrationId">Data di registrazione: </label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="memberDateOfRegistrationId"
+                 type="date"
+                 placeholder="Data di registrazione (richiesto)"
+                 required
+                 [(ngModel)]= member.dateOfRegistration
+                 name="memberDateOfRegistration"
+                 #memberDateOfRegistrationVar="ngModel"
+                 [ngClass]="{'is-invalid': (memberDateOfRegistrationVar.touched || memberDateOfRegistrationVar.dirty) && !memberDateOfRegistrationVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="memberDateOfRegistrationVar.errors?.required">
+              Inserisci la data di registrazione
+            </span>       
+          </span>
+        </div>
+      </div>
+
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="memberDateOfBirthdayId">Data di nascita: </label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="memberDateOfBirthdayId"
+                 type="date"
+                 placeholder="Data di nascita (richiesto)"
+                 required
+                 [(ngModel)]= member.dateOfBirthday
+                 name="memberDateOfBirthday"
+                 #memberDateOfBirthdayVar="ngModel"
+                 [ngClass]="{'is-invalid': (memberDateOfBirthdayVar.touched || memberDateOfBirthdayVar.dirty) && !memberDateOfBirthdayVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="memberDateOfRegistrationVar.errors?.required">
+              Inserisci la data di nascita
+            </span>       
+          </span>
+        </div>
+      </div>
+      
+     
+     
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3"
+                  type="submit"
+                  style="width:80px"
+                  [title]="newMemberF.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!newMemberF.valid">
+            Salva
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

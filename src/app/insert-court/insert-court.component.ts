@@ -24,7 +24,7 @@ export class InsertCourtComponent implements OnInit {
 
   save(newCourtForm: NgForm) {
     console.log( newCourtForm.form);
-    console.log('Saved: ' + JSON.stringify(newCourtForm.value));
+    console.log('Salvato: ' + JSON.stringify(newCourtForm.value));
     this.courtService.addCourt(this.court).subscribe();
   }
 }

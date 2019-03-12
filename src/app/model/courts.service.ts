@@ -11,7 +11,7 @@ import { HttpHeaders } from "@angular/common/http";
 })
 export class CourtsService {
 
-  private productUrl = 'https://localhost:44302/api/fields';
+  private courtUrl = 'https://localhost:44302/api/fields';
   httpOptions = {
     headers: new HttpHeaders ({
       "Content-Type": "application/json"
@@ -21,7 +21,7 @@ export class CourtsService {
   constructor(private http: HttpClient) { }
 
   public getCourts(): Observable<ICourt[]> {
-    return this.http.get<ICourt[]>(this.productUrl)
+    return this.http.get<ICourt[]>(this.courtUrl)
     // const courts = [new Court(0,"pippo", "tennis", 9, false, false),
     // new Court(1,"pluto", "soccer", 10, false, false),
     // new Court(2,"paperino", "tennis", 12, true, false),
@@ -34,6 +34,6 @@ export class CourtsService {
   }
 
   public addCourt(court : Court): Observable<Court> {
-    return this.http.post<Court>(this.productUrl, court, this.httpOptions)
+    return this.http.post<Court>(this.courtUrl, court, this.httpOptions)
   }
 }
