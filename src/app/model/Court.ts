@@ -1,6 +1,12 @@
 export class Court {
 // tslint:disable-next-line: max-line-length
-    constructor( private _id : number,private _name: string, private _sportType: string, private _price: number,  private _isCovered: boolean,  private _isSeven : boolean) { }
+
+    constructor( private _id : number = 0, 
+                 private _name: string = "", 
+                 private _sportType: number = 0, 
+                 private _price: number = 0,    
+                 private _terrainType: number = 0) 
+                 { }
     
    
     public get id() : number {
@@ -16,10 +22,10 @@ export class Court {
     public set name(v: string) {
         this._name = v;
     }
-    public get sportType(): string {
+    public get sport(): number {
         return this._sportType;
     }
-    public set sportType(v: string) {
+    public set sport(v: number) {
         this._sportType = v;
     }
     public get price(): number {
@@ -28,32 +34,18 @@ export class Court {
     public set price(v: number) {
         this._price = v;
     }
-    public get isCovered(): boolean {
-        return this._isCovered;
+    public get terrain(): number {
+        return this._terrainType;
     }
-    public set isCovered(v: boolean) {
-        this._isCovered = v;
+    public set terrain(v: number) {
+        this._terrainType = v;
     }
     
   
     
-    public get isSeven() : boolean
-     {
-        return this._isSeven;
-    }
-    public set isSeven(v : boolean
-        ) {
-        this._isSeven = v;
-    }
+  
 
-    public maxPlayer() :number {
-        if (this._sportType==="tennis") {
-            return 4
-        }else if(this._isSeven){
-            return 14;
-        }
-        return 10;
-    }
+
     
 
 

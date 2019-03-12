@@ -4,6 +4,7 @@ import { ICourt } from './ICourt';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
+import { HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,13 @@ import { catchError, tap, map } from 'rxjs/operators';
 export class CourtsService {
 
   private productUrl = 'https://localhost:44302/api/fields';
+  httpOptions = {
+    headers: new HttpHeaders ({
+      "Content-Type": "application/json"
+    })
+  }
 
   constructor(private http: HttpClient) { }
-
-  
-
 
   public getCourts(): Observable<ICourt[]> {
     return this.http.get<ICourt[]>(this.productUrl)
@@ -30,4 +33,7 @@ export class CourtsService {
     // return courts;
   }
 
+  public addCourt(court : Court): Observable<Court> {
+    return this.http.post<Court>(this.productUrl, court, this.httpOptions)
+  }
 }

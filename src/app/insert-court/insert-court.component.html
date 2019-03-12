@@ -1,0 +1,129 @@
+<div class="card">
+  <div class="card-header">
+    Inserisci un nuovo campo:
+  </div>
+
+  <div class="card-body">
+    <form novalidate
+          #newCourtF="ngForm"
+          (ngSubmit)="save(newCourtF)"
+          >
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="courtNameId">Court name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="courtNameId"
+                 type="text"
+                 placeholder="Nome Campo (richiesto)"
+                 required
+                 minlength="3"
+                 [(ngModel)]= court.name
+                 name="courtName"
+                 #courtNameVar="ngModel"
+                 [ngClass]="{'is-invalid': (courtNameVar.touched || courtNameVar.dirty) && !courtNameVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="courtNameVar.errors?.required">
+              Inserisci il nome del campo.
+            </span>
+            <span *ngIf="courtNameVar.errors?.minlength">
+              Il nome del campo deve essere più lungo di 3 caratteri.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="priceId">Price</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="priceId"
+                 type="number"
+                 min = "0.00"
+                 step = "0.01"
+                 placeholder="Prezzo (richiesto)"
+                 required
+                 [(ngModel)]="court.price"
+                 name="price"
+                 #priceVar="ngModel"
+                 [ngClass]="{'is-invalid': (priceVar.touched || priceVar.dirty) && !priceVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="priceVar.errors?.required">
+              Inserire un prezzo.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="sportId">Sport</label>
+               <div class="col-md-8">
+               <select class="form-control"
+                    id="sportId"
+                    [(ngModel)]="court.sport"
+                    name="sport"
+                    required
+                    #terrainVar="ngModel"
+                    >
+              <option value=""
+                      disabled
+                      selected
+                      hidden>Seleziona uno sport...</option>
+              <option value=0>Tennis</option>
+              <option value=1>Paddle</option>
+              <option value=2>Soccer</option>
+            </select>
+          <span class="invalid-feedback">
+            <span *ngIf="terrainVar.errors?.required">
+              Please enter your email address.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                 for="terrainId">Terrain</label>
+                 <div class="col-md-8">
+                 <select class="form-control"
+                      id="terrainId"
+                      [(ngModel)]="court.terrain"
+                      name="terrain"
+                      required
+                      #terrainVar="ngModel"
+                      >
+                <option value=""
+                        disabled
+                        selected
+                        hidden>Seleziona un terreno...</option>
+                <option value=0>Grass</option>
+                <option value=1>Synthetic</option>
+                <option value=2>Clay</option>
+                <option value=3>Tarmac</option>
+                <option value=4>Concrete</option>
+              </select>
+            <span class="invalid-feedback">
+              <span *ngIf="terrainVar.errors?.required">
+                Inserisci un tipo di terreno.
+              </span>
+            </span>
+          </div>
+        </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3"
+                  type="submit"
+                  style="width:80px"
+                  [title]="newCourtF.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!newCourtF.valid">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

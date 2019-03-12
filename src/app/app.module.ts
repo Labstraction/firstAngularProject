@@ -15,6 +15,7 @@ import { ChallengeListComponent } from "./challenge-list/challenge-list.componen
 import { PoliziottoGrassoService } from "./PoliziottoGrasso.service";
 import { ChallengeDetailComponent } from "./challenge-detail/challenge-detail.component";
 import { ReservationDetailComponent } from "./reservation-detail/reservation-detail.component";
+import { InsertCourtComponent } from "./insert-court/insert-court.component";
 
 @NgModule({
    declarations: [
@@ -22,13 +23,14 @@ import { ReservationDetailComponent } from "./reservation-detail/reservation-det
       WelcomePageComponent,
       CourtsListComponent,
       MembersListComponent,
-      ReservationComponent,     
+      ReservationComponent,
       CourtDetailsComponent,
       MemberDetailsComponent,
       MaxPlayerComponent,
       ChallengeListComponent,
       ChallengeDetailComponent,
-      ReservationDetailComponent
+      ReservationDetailComponent,
+      InsertCourtComponent
    ],
    
    imports: [
@@ -39,6 +41,7 @@ import { ReservationDetailComponent } from "./reservation-detail/reservation-det
          { path: 'members', component: MembersListComponent},
          { path: 'reservations', component: ReservationComponent},
          { path: 'challenges', component: ChallengeListComponent},
+         { path: 'court-insert', component: InsertCourtComponent},
          {
             path: 'courts/:id',
             canActivate: [PoliziottoGrassoService],
@@ -72,3 +75,5 @@ import { ReservationDetailComponent } from "./reservation-detail/reservation-det
    ]
 })
 export class AppModule { }
+
+//
