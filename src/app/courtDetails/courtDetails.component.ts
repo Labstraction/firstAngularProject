@@ -13,7 +13,7 @@ import {ICourt} from '../model/ICourt';
 })
 
 export class CourtDetailsComponent implements OnInit {
-  pageTitle = 'Court Detail';
+  pageTitle = 'Dettagli campo';
   errorMessage = '';
   court: ICourt | undefined;
 

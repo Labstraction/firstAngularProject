@@ -1,3 +1,39 @@
-<p>
-  reservation-detail works!
-</p>
+<div class='card'
+     *ngIf='reservation'>
+  <div class='card-header'>
+    {{pageTitle }}
+  </div>
+
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-8'>
+        <div class='row'>
+          <div class='col-md-4'>Campo prenotato: {{reservation.fieldName}}</div>
+        </div>
+        <div class='row'>
+          <div class='col-md-4'>Da: {{reservation.memberName}}</div>
+        </div>
+
+        <div class='row'>
+          <div class='col-md-4'>In data: {{reservation.date}}</div>
+        </div>
+
+      </div>
+
+      <div class='col-md-4'>
+        <img class='center-block img-responsive'
+             [style.width.px]='200'
+             [style.margin.px]='2'
+             [src]=''>
+      </div>
+    </div>
+  </div>
+
+  <div class='card-footer'>
+    <button class='btn btn-outline-secondary'
+            (click)='onBack()'
+            style='width:80px'>
+      <i class='fa fa-chevron-left'></i> Back
+    </button>
+  </div>
+</div>

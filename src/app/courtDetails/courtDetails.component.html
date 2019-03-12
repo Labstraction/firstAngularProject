@@ -1,23 +1,20 @@
 <div class='card'
      *ngIf='court'>
   <div class='card-header'>
-    {{pageTitle + ': ' + court.name}}
+    {{pageTitle}}
   </div>
 
   <div class='card-body'>
     <div class='row'>
       <div class='col-md-8'>
         <div class='row'>
-          <div class='col-md-4'>Name:</div>
-          <div class='col-md-8'>{{court.name}}</div>
+          <div class='col-md-4'>Nome: {{court.name}}</div>
         </div>
         <div class='row'>
-          <div class='col-md-4'>sport:</div>
-          <div class='col-md-8'>{{court.sportString}}</div>
+          <div class='col-md-4'>Sport: {{court.sportString}}</div>
         </div>
         <div class='row'>
-          <div class='col-md-4'>Price:</div>
-          <div class='col-md-8'>{{court.price|currency:'USD':'symbol'}}</div>
+          <div class='col-md-4'>Prezzo: {{court.price|currency:'USD':'symbol'}}</div>
         </div>
       </div>
 

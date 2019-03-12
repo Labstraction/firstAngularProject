@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MembersService } from '../model/members.service';
 import { IMember} from '../model/IMember';
-import { IReservation } from '../model/IReservation';
+
 
 @Component({
   selector: 'app-member-details',
@@ -10,7 +10,7 @@ import { IReservation } from '../model/IReservation';
   styleUrls: ['./memberDetails.component.css']
 })
 export class MemberDetailsComponent implements OnInit {
-  pageTitle = 'Member Detail';
+  pageTitle = 'Dettagli utente';
   errorMessage = '';
   member: IMember | undefined;
 
