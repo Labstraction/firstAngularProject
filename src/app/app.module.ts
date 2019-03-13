@@ -17,6 +17,9 @@ import { ChallengeDetailComponent } from "./challenge-detail/challenge-detail.co
 import { ReservationDetailComponent } from "./reservation-detail/reservation-detail.component";
 import { InsertCourtComponent } from "./insert-court/insert-court.component";
 import { InsertMemberComponent } from './insert-member/insert-member.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InsertCourtReactiveComponent} from "./insert-court-reactive/insert-court-reactive.component";
+import { InsertMemberReactiveComponent } from "./insert-member-reactive/insert-member-reactive.component";
 
 @NgModule({
    declarations: [
@@ -32,11 +35,14 @@ import { InsertMemberComponent } from './insert-member/insert-member.component';
       ChallengeDetailComponent,
       ReservationDetailComponent,
       InsertCourtComponent, 
-      InsertMemberComponent
+      InsertMemberComponent, 
+      InsertCourtReactiveComponent, 
+      InsertMemberReactiveComponent
    ],
    
    imports: [
       BrowserModule,
+      ReactiveFormsModule,
       RouterModule.forRoot([
          { path: 'courts', component: CourtsListComponent },
          { path: 'welcome', component: WelcomePageComponent},
@@ -44,7 +50,9 @@ import { InsertMemberComponent } from './insert-member/insert-member.component';
          { path: 'reservations', component: ReservationComponent},
          { path: 'challenges', component: ChallengeListComponent},
          { path: 'court-insert', component: InsertCourtComponent},
+         { path: 'court-insert-reactive', component: InsertCourtReactiveComponent},
          { path: 'member-insert', component: InsertMemberComponent},
+         { path: 'member-insert-reactive', component: InsertMemberReactiveComponent},
          {
             path: 'courts/:id',
             canActivate: [PoliziottoGrassoService],

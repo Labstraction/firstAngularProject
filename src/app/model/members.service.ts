@@ -26,6 +26,7 @@ export class MembersService {
   }
 
   public addMember(member : Member): Observable<Member> {
+    console.log(JSON.stringify(member));
     return this.http.post<Member>(this.memberUrl, member, this.httpOptions)
   }
 }

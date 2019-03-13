@@ -34,6 +34,7 @@ export class CourtsService {
   }
 
   public addCourt(court : Court): Observable<Court> {
-    return this.http.post<Court>(this.courtUrl, court, this.httpOptions)
+    console.log(JSON.stringify(court));
+    return this.http.post<Court>(this.courtUrl,JSON.stringify(court), this.httpOptions);
   }
 }

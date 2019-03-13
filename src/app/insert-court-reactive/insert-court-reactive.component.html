@@ -1,0 +1,101 @@
+<div class="card">
+  <div class="card-header">
+    Sign Up!
+  </div>
+
+  <div class="card-body">
+    <form novalidate (ngSubmit)="save()" [formGroup]="newCourtForm">
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="nameId">Nome Campo</label>
+        <div class="col-md-8">
+          <input class="form-control" id="nameId" type="text"  placeholder="Nome Campo (richiesto)"
+            formControlName="name"
+            [ngClass]="{'is-invalid': (newCourtForm.get('name').touched || newCourtForm.get('name').dirty) && !newCourtForm.get('name').valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="newCourtForm.get('name').errors?.required">
+              Inserisci il nome del campo.
+            </span>
+            <span *ngIf="newCourtForm.get('name').errors?.minlength">
+              Il nome del campo deve essere più lungo di 3 caratteri.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="priceId">Prezzo</label>
+        <div class="col-md-8">
+          <input class="form-control" id="priceId" type="number"  step="0.01" placeholder="Prezzo (richiesto)"
+            formControlName="price"
+            [ngClass]="{'is-invalid': (newCourtForm.get('price').touched || newCourtForm.get('price').dirty) && !newCourtForm.get('price').valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="newCourtForm.get('price').errors?.required">
+              Per favore inserire il prezzo
+            </span>
+            <span *ngIf="newCourtForm.get('price').errors?.range">
+              Inserire un prezzo valido
+            </span>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="sportId">Sport</label>
+        <div class="col-md-8">
+          <select class="form-control"  id="sportId" formControlName="sport">
+            <option value="" disabled selected hidden>Seleziona uno sport...</option>
+            <option value=0>Tennis</option>
+            <option value=1>Paddle</option>
+            <option value=2>Soccer</option>
+          </select>
+          <span class="invalid-feedback">
+            <span *ngIf="newCourtForm.get('sport').errors?.required">
+              Inserisci un tipo di sport
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="terrainId">Terrain</label>
+        <div class="col-md-8">
+          <select class="form-control" id="terrainId" formControlName="terrain">
+            <option value="" disabled selected hidden>Seleziona un terreno...</option>
+            <option value=0>Grass</option>
+            <option value=1>Synthetic</option>
+            <option value=2>Clay</option>
+            <option value=3>Tarmac</option>
+            <option value=4>Concrete</option>
+          </select>
+          <span class="invalid-feedback">
+            <span *ngIf="newCourtForm.get('terrain').errors?.required">
+              Inserisci un tipo di terreno.
+            </span>
+          </span>
+        </div>
+      </div>
+      <br>
+
+
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3" type="submit" style="width:80px"
+            [title]="newCourtForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+            [disabled]="!newCourtForm.valid">
+            Salva
+          </button>
+          <button class="btn btn-outline-secondary" type="button" (click)="populateTestData()">
+            Test Data
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<br>Dirty: {{ newCourtForm.dirty }}
+<br>Touched: {{ newCourtForm.touched }}
+<br>Valid: {{ newCourtForm.valid }}
+<br>Value: {{ newCourtForm.value | json }}
