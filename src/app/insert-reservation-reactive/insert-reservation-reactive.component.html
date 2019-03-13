@@ -1,0 +1,31 @@
+<div class="card">
+
+  <div class="card-header">
+    <h2>Dati nuova prenotazione:</h2>
+  </div>
+
+  <div class="card-body">
+      <form novalidate (ngSubmit)="save()" [formGroup]="newReservationForm">
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="reservationId">Campo: </label>
+        <div class="col-md-8">
+          <div *ngIf="courts">
+            <select class="form-control" id="reservationId" formControlName="nameCourt">
+              <option value="" disabled selected hidden>Seleziona un campo</option>
+              <tr *ngFor='let court of courts'>
+                <option>{{court.name}}</option>
+            </tr>
+            </select>
+          </div>
+          <span class="invalid-feedback">
+            <span *ngIf="newReservationForm.get('nameCourt').errors?.required">
+              Inserisci un nome di un campo
+            </span>
+          </span>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

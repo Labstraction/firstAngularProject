@@ -62,7 +62,7 @@
         <label class="col-md-2 col-form-label" for="terrainId">Terrain</label>
         <div class="col-md-8">
           <select class="form-control" id="terrainId" formControlName="terrain">
-            <option value="" disabled selected hidden>Seleziona un terreno...</option>
+            <option value="" disabled selected hidden>Seleziona un terreno</option>
             <option value=0>Grass</option>
             <option value=1>Synthetic</option>
             <option value=2>Clay</option>
@@ -87,9 +87,9 @@
             [disabled]="!newCourtForm.valid">
             Salva
           </button>
-          <button class="btn btn-outline-secondary" type="button" (click)="populateTestData()">
+          <!--<button class="btn btn-outline-secondary" type="button" (click)="populateTestData()">
             Test Data
-          </button>
+          </button>-->
         </div>
       </div>
     </form>

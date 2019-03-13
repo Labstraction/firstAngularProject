@@ -9,7 +9,7 @@
       <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label" for="nameId">Nome: </label>
         <div class="col-md-8">
-          <input class="form-control" id="nameId" type="text"  placeholder="Nome(richiesto)"
+          <input class="form-control" id="nameId" type="text"  placeholder="Nome (richiesto)"
             formControlName="name"
             [ngClass]="{'is-invalid': (newMemberForm.get('name').touched || newMemberForm.get('name').dirty) && !newMemberForm.get('name').valid }" />
           <span class="invalid-feedback">
@@ -26,7 +26,7 @@
       <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label" for="surnameId">Cognome: </label>
         <div class="col-md-8">
-          <input class="form-control" id="surnameId" type="text"  placeholder="Nome(richiesto)"
+          <input class="form-control" id="surnameId" type="text"  placeholder="Cognome (richiesto)"
             formControlName="surname"
             [ngClass]="{'is-invalid': (newMemberForm.get('surname').touched || newMemberForm.get('surname').dirty) && !newMemberForm.get('surname').valid }" />
           <span class="invalid-feedback">
@@ -34,7 +34,21 @@
               Inserisci il cognome del membro.
             </span>
             <span *ngIf="newMemberForm.get('surname').errors?.maxlength">
-              Il cognome del membro deve avere al massimo 30 caratteri.
+              Il cognome è troppo lungo.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="addressId">Indirizzo: </label>
+        <div class="col-md-8">
+          <input class="form-control" id="addressId" type="text"  placeholder="Indirizzo (richiesto)"
+            formControlName="address"
+            [ngClass]="{'is-invalid': (newMemberForm.get('address').touched || newMemberForm.get('address').dirty) && !newMemberForm.get('address').valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="newMemberForm.get('address').errors?.required">
+              Inserisci l'indirizzo del membro
             </span>
           </span>
         </div>
@@ -47,7 +61,7 @@
             formControlName="dateOfRegistration"
             [ngClass]="{'is-invalid': (newMemberForm.get('dateOfRegistration').touched || newMemberForm.get('dateOfRegistration').dirty) && !newMemberForm.get('dateOfRegistration').valid }" />
           <span class="invalid-feedback">
-            <span *ngIf="newMemberForm.get('name').errors?.required">
+            <span *ngIf="newMemberForm.get('dateOfRegistration').errors?.required">
               Inserisci la data di registrazione
             </span>
      
@@ -56,23 +70,20 @@
       </div>
 
       <div class="form-group row mb-2">
-        <label class="col-md-2 col-form-label" for="dateOfBirthdayId">Data di mascita: </label>
+        <label class="col-md-2 col-form-label" for="dateOfBirthId">Data di nascita: </label>
         <div class="col-md-8">
-          <input class="form-control" id="dateOfBirthdayId" type="date"  placeholder="Data di nascita(richiesto)"
-            formControlName="dateOfBirthday"
-            [ngClass]="{'is-invalid': (newMemberForm.get('dateOfBirthday').touched || newMemberForm.get('dateOfBirthday').dirty) && !newMemberForm.get('dateOfBirthday').valid }" />
+          <input class="form-control" id="dateOfBirthId" type="date"  placeholder="Data di nascita(richiesto)"
+            formControlName="dateOfBirth"
+            [ngClass]="{'is-invalid': (newMemberForm.get('dateOfBirth').touched || newMemberForm.get('dateOfBirth').dirty) && !newMemberForm.get('dateOfBirth').valid }" />
           <span class="invalid-feedback">
-            <span *ngIf="newMemberForm.get('dateOfBirthday').errors?.required">
+            <span *ngIf="newMemberForm.get('dateOfBirth').errors?.required">
               Inserisci la data di nascita
             </span>
-     
           </span>
         </div>
-      </div>
+      </div>  
 
-   
       <br>
-
 
       <div class="form-group row mb-2">
         <div class="offset-md-2 col-md-4">
@@ -80,13 +91,13 @@
             [title]="newMemberForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
             [disabled]="!newMemberForm.valid">
             Salva
-          </button>
-          
+          </button>          
         </div>
       </div>
     </form>
   </div>
 </div>
+
 <br>Dirty: {{ newMemberForm.dirty }}
 <br>Touched: {{ newMemberForm.touched }}
 <br>Valid: {{ newMemberForm.valid }}

@@ -8,9 +8,7 @@
       <th>Nome</th>
       <th>Cognome</th>
       <th>Data di Registrazione</th>
-      <!-- <th>Ulteriori Info</th> -->
-      <!-- <th>Bottone</th> -->
-      <!-- <th>Max Players</th> -->
+
     </tr>
   </thead>
   <tbody>
@@ -18,20 +16,12 @@
       <td> <a [routerLink]="['/members',member.id]">{{member.name}}</a></td>
       <td>{{member.surname}}</td>
       <td>{{member.dateOfRegistration}}</td>
-      <!-- <td *ngIf="court.sportType==='tennis'"><input type="checkbox" [checked]="court.isCovered" onclick="return false;">
-        <label>Coperto</label></td>
-      <td *ngIf="court.sportType==='soccer'"><input type="checkbox" [checked]="court.isSeven" onclick="return false;">
-        <label>Calcio a sette</label></td>
-      <td><button (click)="displayName($event,court)">Click</button></td>
-      <td><app-max-player [maxPlayer]='court.maxPlayer()'
-        [sportType]='court.sportType'
-        (maxPlayerClicked)='onMaxPlayerClicked($event)'>
-      </app-max-player></td> -->
+
     </tr>
   </tbody>
 </table>
 
 <br>
-<a [routerLink]="['/member-insert-reactive']"><button>Inserisci nuovo membro</button></a>
+<a [routerLink]="['/member-insert-reactive']"><button>Nuovo membro</button></a>
 
 </div>

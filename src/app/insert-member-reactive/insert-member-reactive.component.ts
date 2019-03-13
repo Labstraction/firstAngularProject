@@ -19,9 +19,10 @@ export class InsertMemberReactiveComponent implements OnInit {
   ngOnInit() {
     this.newMemberForm = this.fb.group({
       name:['', [Validators.required, Validators.minLength(3)]],
-      surname:['', [Validators.required, Validators.maxLength(30)]],
+      surname:['', [Validators.required, Validators.maxLength(25)]],
+      address:['', [Validators.required]],
       dateOfRegistration: ['', [Validators.required]],
-      dateOfBirthday: ['', [Validators.required]]
+      dateOfBirth: ['', [Validators.required]]
     });
   }
 

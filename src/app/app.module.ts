@@ -20,6 +20,7 @@ import { InsertMemberComponent } from './insert-member/insert-member.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InsertCourtReactiveComponent} from "./insert-court-reactive/insert-court-reactive.component";
 import { InsertMemberReactiveComponent } from "./insert-member-reactive/insert-member-reactive.component";
+import { InsertReservationReactiveComponent } from "./insert-reservation-reactive/insert-reservation-reactive.component";
 
 @NgModule({
    declarations: [
@@ -37,7 +38,8 @@ import { InsertMemberReactiveComponent } from "./insert-member-reactive/insert-m
       InsertCourtComponent, 
       InsertMemberComponent, 
       InsertCourtReactiveComponent, 
-      InsertMemberReactiveComponent
+      InsertMemberReactiveComponent,
+      InsertReservationReactiveComponent
    ],
    
    imports: [
@@ -53,6 +55,7 @@ import { InsertMemberReactiveComponent } from "./insert-member-reactive/insert-m
          { path: 'court-insert-reactive', component: InsertCourtReactiveComponent},
          { path: 'member-insert', component: InsertMemberComponent},
          { path: 'member-insert-reactive', component: InsertMemberReactiveComponent},
+         { path: 'member-reservation-reactive', component: InsertReservationReactiveComponent},
          {
             path: 'courts/:id',
             canActivate: [PoliziottoGrassoService],
@@ -86,5 +89,3 @@ import { InsertMemberReactiveComponent } from "./insert-member-reactive/insert-m
    ]
 })
 export class AppModule { }
-
-//
