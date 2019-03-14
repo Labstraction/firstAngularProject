@@ -5,7 +5,7 @@ export class Member
                      public surname: string = "", 
                      public address: string = "",
                      public dateOfRegistration: Date = null, 
-                     public dateOfBirthday: Date = null) 
+                     public dateOfBirth: Date = null) 
                      { }
         
 }

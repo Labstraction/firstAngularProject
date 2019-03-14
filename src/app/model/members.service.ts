@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IMember} from './IMember';
 import { Member} from './Member';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { HttpHeaders } from "@angular/common/http";
@@ -28,5 +28,18 @@ export class MembersService {
   public addMember(member : Member): Observable<Member> {
     console.log(JSON.stringify(member));
     return this.http.post<Member>(this.memberUrl, member, this.httpOptions)
+  }
+
+  public editMember(member : Member): Observable<Member> {
+    console.log("putUser " + JSON.stringify(member));
+    const putOptions = {
+      headers: new HttpHeaders ({
+        "Content-Type": "application/json"
+      }),
+      params : new HttpParams().set("id", member.id + "")
+    }
+    const newUrl = this.memberUrl + "/" + member.id;
+    console.log(JSON.stringify(member));
+    return this.http.put<Member>(newUrl,JSON.stringify(member), putOptions);
   }
 }

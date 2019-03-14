@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Court } from './Court';
 import { ICourt } from './ICourt';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { HttpHeaders } from "@angular/common/http";
@@ -12,11 +12,12 @@ import { HttpHeaders } from "@angular/common/http";
 export class CourtsService {
 
   private courtUrl = 'https://localhost:44302/api/fields';
-  httpOptions = {
-    headers: new HttpHeaders ({
-      "Content-Type": "application/json"
-    })
-  }
+    postOptions = {
+      headers: new HttpHeaders ({
+        "Content-Type": "application/json"
+      })
+    }
+   
 
   constructor(private http: HttpClient) { }
 
@@ -35,6 +36,19 @@ export class CourtsService {
 
   public addCourt(court : Court): Observable<Court> {
     console.log(JSON.stringify(court));
-    return this.http.post<Court>(this.courtUrl,JSON.stringify(court), this.httpOptions);
+    return this.http.post<Court>(this.courtUrl,JSON.stringify(court), this.postOptions);
+  }
+
+  public editCourt(court : Court): Observable<Court> {
+    console.log("putUser " + JSON.stringify(court));
+    const putOptions = {
+      headers: new HttpHeaders ({
+        "Content-Type": "application/json"
+      }),
+      params : new HttpParams().set("id", court.id + "")
+    }
+    const newUrl = this.courtUrl + "/" + court.id;
+    console.log(JSON.stringify(court));
+    return this.http.put<Court>(newUrl,JSON.stringify(court), putOptions);
   }
 }

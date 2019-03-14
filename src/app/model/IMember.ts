@@ -3,5 +3,7 @@ export interface IMember {
     name: string;
     surname: string;
     dateOfRegistration: Date;
+    dateOfBirth: Date;
+    address: string;
 
 }

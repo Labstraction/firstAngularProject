@@ -7,25 +7,69 @@
   <div class="card-body">
       <form novalidate (ngSubmit)="save()" [formGroup]="newReservationForm">
 
-      <div class="form-group row mb-2">
-        <label class="col-md-2 col-form-label" for="reservationId">Campo: </label>
+      <div class="form-group row mb-2" *ngIf="members">
+        <label class="col-md-2 col-form-label" for="memberSelectId">Membri: </label>
         <div class="col-md-8">
-          <div *ngIf="courts">
-            <select class="form-control" id="reservationId" formControlName="nameCourt">
-              <option value="" disabled selected hidden>Seleziona un campo</option>
-              <tr *ngFor='let court of courts'>
-                <option>{{court.name}}</option>
-            </tr>
-            </select>
+          <div>
+            <select class="form-control" id="memberSelectId" formControlName="memberName" (change) = "onMemberSelectedChange($event)">
+              <option value="" disabled selected hidden>Seleziona un membro</option>
+                <option *ngFor='let member of members'>{{member.name + " " + member.surname}}</option>
+             </select>
           </div>
-          <span class="invalid-feedback">
-            <span *ngIf="newReservationForm.get('nameCourt').errors?.required">
-              Inserisci un nome di un campo
-            </span>
-          </span>
         </div>
       </div>
 
+      <div class="form-group row mb-2" *ngIf="memberSelected">
+        <label class="col-md-2 col-form-label" for="sportSelectId">Sports: </label>
+        <div class="col-md-8">
+          <div>
+            <select class="form-control" id="sportSelectId" formControlName="sportType" (change) = "onSportSelectedChange($event)">
+              <option value="" disabled selected hidden>Seleziona uno sport</option>
+              <option *ngFor='let sport of sports'>{{sport}}</option>
+             </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2" *ngIf="courts && sportIndex == 2">
+        <label class="col-md-2 col-form-label" for="sportSelectId">Modalità: </label>
+        <div class="form-check">         
+            <input id ="soccerCheck1Id" type="checkbox" class="form-check-input"><label class="form-check-label" for="soccerCheck1Id">Calcio a 5</label>
+            <input type="checkbox" class="form-control">Calcio a 7
+        </div>
+      </div>
+
+      <div class="form-group row mb-2" *ngIf="courts && sportIndex == 0">
+        <label class="col-md-2 col-form-label" for="sportSelectId">Modalità: </label>
+        <div class="col-md-8">
+          <div>
+            <input type="checkbox" class="form-control">Singolo
+            <input type="checkbox" class="form-control">Doppio
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2" *ngIf="courts">
+        <label class="col-md-2 col-form-label" for="courtSelectId">Campi: </label>
+        <div class="col-md-8">
+          <div>
+            <select class="form-control" id="courtSelectId" formControlName="courtName" (change) = "onCourtSelectedChange($event)">
+              <option value="" disabled selected hidden>Seleziona un campo</option>
+              <option *ngFor='let court of courts'>{{court.name}}</option>
+             </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2" *ngIf="courtSelected">
+        <label class="col-md-2 col-form-label" for="dateSelectId">Data: </label>
+        <div class="col-md-8">
+          <div>
+            <input type="datetime-local" class="form-control input-sm" id="dateSelectId" formControlName="date" (change) = "onDateSelectedChange($event)">
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </div>

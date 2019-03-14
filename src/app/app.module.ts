@@ -52,9 +52,9 @@ import { InsertReservationReactiveComponent } from "./insert-reservation-reactiv
          { path: 'reservations', component: ReservationComponent},
          { path: 'challenges', component: ChallengeListComponent},
          { path: 'court-insert', component: InsertCourtComponent},
-         { path: 'court-insert-reactive', component: InsertCourtReactiveComponent},
+         { path: 'court-insert-reactive/:id', canActivate: [PoliziottoGrassoService], component: InsertCourtReactiveComponent},
          { path: 'member-insert', component: InsertMemberComponent},
-         { path: 'member-insert-reactive', component: InsertMemberReactiveComponent},
+         { path: 'member-insert-reactive/:id', canActivate: [PoliziottoGrassoService], component: InsertMemberReactiveComponent},
          { path: 'member-reservation-reactive', component: InsertReservationReactiveComponent},
          {
             path: 'courts/:id',
