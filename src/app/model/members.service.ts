@@ -42,4 +42,13 @@ export class MembersService {
     console.log(JSON.stringify(member));
     return this.http.put<Member>(newUrl,JSON.stringify(member), putOptions);
   }
+
+  public deleteMember(member : Member): Observable<Member> {
+    
+ 
+    const newUrl = this.memberUrl + "/" + member.id;
+    console.log("deletedUser " + JSON.stringify(member));
+    console.log("Url voluto:" + newUrl);
+    return this.http.delete<Member>(newUrl);
+  }
 }

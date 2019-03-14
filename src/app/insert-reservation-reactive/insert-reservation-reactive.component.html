@@ -1,7 +1,7 @@
 <div class="card">
 
   <div class="card-header">
-    <h2>Dati nuova prenotazione:</h2>
+    <h5>Inserisci i dati:</h5>
   </div>
 
   <div class="card-body">
@@ -34,16 +34,18 @@
       <div class="form-group row mb-2" *ngIf="courts && sportIndex == 2">
         <label class="col-md-2 col-form-label" for="sportSelectId">Modalità: </label>
         <div class="form-check">         
-            <input id ="soccerCheck1Id" type="checkbox" class="form-check-input"><label class="form-check-label" for="soccerCheck1Id">Calcio a 5</label>
-            <input id ="soccerCheck1Id" type="checkbox" class="form-check-input"><label class="form-check-label" for="soccerCheck1Id">Calcio a 7</label>
+            <input id ="soccerCheck1Id" name="checkSoccer" type="radio" class="form-check-input" checked><label class="form-check-label" for="soccerCheck1Id">Calcio a 5</label>
+            <br>
+            <input id ="soccerCheck2Id" name="checkSoccer" type="radio" class="form-check-input"><label class="form-check-label" for="soccerCheck2Id">Calcio a 7</label>
         </div>
       </div>
 
       <div class="form-group row mb-2" *ngIf="courts && sportIndex == 0">
         <label class="col-md-2 col-form-label" for="sportSelectId">Modalità: </label>
         <div class="form-check">         
-            <input id ="soccerCheck1Id" type="checkbox" class="form-check-input"><label class="form-check-label" for="soccerCheck1Id">Singolo</label>
-            <input id ="soccerCheck1Id" type="checkbox" class="form-check-input"><label class="form-check-label" for="soccerCheck1Id">Doppio</label>
+            <input id ="tennisCheck1Id" name="checkTennis" type="radio" class="form-check-input" checked><label class="form-check-label" for="tennisCheck1Id">Singolo</label>
+            <br>
+            <input id ="tennisCheck2Id" name="checkTennis" type="radio" class="form-check-input"><label class="form-check-label" for="tennisCheck2Id">Doppio</label>
         </div>
       </div>
 
@@ -63,10 +65,33 @@
         <label class="col-md-2 col-form-label" for="dateSelectId">Data: </label>
         <div class="col-md-8">
           <div>
-            <input type="datetime-local" class="form-control input-sm" id="dateSelectId" formControlName="date" (change) = "onDateSelectedChange($event)">
+            <input type="datetime-local" class="form-control input-sm" id="dateSelectId" 
+            formControlName="date" (change) = "onDateSelectedChange($event)"/>
+          <span class="invalid-feedback">
+            <span *ngIf="newReservationForm.get('date').errors?.required">
+                Data non valida
+            </span>
+          </span>
+         
           </div>
         </div>
       </div>
+
+
+      <div class="form-group row mb-2"  *ngIf="dateSelected">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3" type="submit" style="width:80px"
+            [title]="newReservationForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+            [disabled]="!newReservationtForm.valid">
+            
+            Salva
+          </button>
+          <!--<button class="btn btn-outline-secondary" type="button" (click)="populateTestData()">
+            Test Data
+          </button>-->
+        </div>
+      </div>
+
     </form>
   </div>
 </div>

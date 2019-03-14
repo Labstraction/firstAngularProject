@@ -21,6 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InsertCourtReactiveComponent} from "./insert-court-reactive/insert-court-reactive.component";
 import { InsertMemberReactiveComponent } from "./insert-member-reactive/insert-member-reactive.component";
 import { InsertReservationReactiveComponent } from "./insert-reservation-reactive/insert-reservation-reactive.component";
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
    declarations: [
@@ -39,7 +42,8 @@ import { InsertReservationReactiveComponent } from "./insert-reservation-reactiv
       InsertMemberComponent, 
       InsertCourtReactiveComponent, 
       InsertMemberReactiveComponent,
-      InsertReservationReactiveComponent
+      InsertReservationReactiveComponent,
+      ConfirmationDialogComponent 
    ],
    
    imports: [
@@ -81,9 +85,11 @@ import { InsertReservationReactiveComponent } from "./insert-reservation-reactiv
          { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
        ]),
       FormsModule,
+      NgbModule.forRoot(),
       HttpClientModule
    ],
-   providers: [],
+   providers: [ ConfirmationDialogService ],
+   entryComponents: [ ConfirmationDialogComponent ],
    bootstrap: [
       MasterPageComponent
    ]

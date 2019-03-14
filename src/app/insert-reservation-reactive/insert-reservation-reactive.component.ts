@@ -17,6 +17,8 @@ import { Member } from '../model/Member';
 export class InsertReservationReactiveComponent implements OnInit {
   newReservationForm: FormGroup;
   reservation = new Reservation();
+  courts: Court[];
+  court: Court;
   members: Member[];
   member: Member;
   sports = ["Tennis", "Paddle", "Soccer"];
@@ -25,11 +27,9 @@ export class InsertReservationReactiveComponent implements OnInit {
 
   memberSelected: boolean;
   courtSelected: boolean;
+  dateSelected: boolean;
 
   constructor(private fb: FormBuilder, private reservationService: ReservationsService, private courtsService: CourtsService, private membersService: MembersService) { }
-
-  courts: Court[];
-  court: Court;
 
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class InsertReservationReactiveComponent implements OnInit {
       memberName: ['', [Validators.required]],
       courtName: ['', [Validators.required]],
       isDouble: [false],
-      date: [null, [Validators.required]]
+      date: [null, [Validators.required, dateRange(Date.now.toString())]]
     });
   }
 
@@ -68,6 +68,12 @@ export class InsertReservationReactiveComponent implements OnInit {
     this.court = courts[0];
   }
 
+  public onCourtSelectedChange(e) {
+    if (e.target.value && e.target.value !== "") {
+      this.courtSelected = true;
+    }
+  }
+
   public onMemberSelectedChange(e) {
     if (e.target.value && e.target.value !== "") {
       this.memberSelected = true;
@@ -82,20 +88,21 @@ export class InsertReservationReactiveComponent implements OnInit {
     }
   }
 
-  public onCourtSelectedChange(e)
-  {
-    if (e.target.value && e.target.value !== "")
-    {
-      this.courtSelected = true;
+  
+  public onDateSelectedChange(e) {
+    if (e.target.value && e.target.value !== ""){
+      this.dateSelected = true;
     }
   }
 
-  public onDateSelectedChange(e)
-  {
-    if (e.target.value && e.target.value !== "")
-    {
-      this.date = new Date(e.target.value); 
+}
+
+function dateRange(dateRight: string): ValidatorFn {
+  return (c: AbstractControl): { [key: string]: boolean } | null => {
+    if (c.value !== null && (isNaN(c.value) || c.value > dateRight)) {
+      return { 'range': true };
     }
-  }
+    return null;
+  };
 }
 
