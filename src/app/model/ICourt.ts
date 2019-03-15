@@ -6,4 +6,5 @@ export interface ICourt {
     price: number;
     sportString: string;
     terrainString: string;
+    isSeven: boolean;
   }

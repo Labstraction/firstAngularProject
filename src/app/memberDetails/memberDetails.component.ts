@@ -34,7 +34,7 @@ export class MemberDetailsComponent implements OnInit {
   public confirmDeleteMember(event, member): void {
   
     this.confirmationDialogService.confirm('Conferma', "Cancellare il membro " + member.name + " " + member.surname + "?")
-    .then((confirmed) => (this.membersService.deleteMember(member), confirmed))
+    .then((confirmed) => (this.membersService.deleteMember(member).subscribe(), confirmed))
     .catch(() => console.log('Cancellazione annullata'))
   }
 

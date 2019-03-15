@@ -17,6 +17,7 @@ import { Member } from '../model/Member';
 export class InsertReservationReactiveComponent implements OnInit {
   newReservationForm: FormGroup;
   reservation = new Reservation();
+  id: number;
   courts: Court[];
   court: Court;
   members: Member[];
@@ -35,23 +36,31 @@ export class InsertReservationReactiveComponent implements OnInit {
   ngOnInit() {
     this.membersService.getMembers().subscribe(
       members => this.populateMembers(members)
-    )
+    );
+
     this.newReservationForm = this.fb.group({
       sportType: ['', [Validators.required]],
       memberName: ['', [Validators.required]],
       courtName: ['', [Validators.required]],
-      isDouble: [false],
-      date: [null, [Validators.required, dateRange(Date.now.toString())]]
+      checkTennis: [0, [Validators.required]],
+      checkSoccer: [0, [Validators.required]],
+      date: [null, [Validators.required/*, dateRange(Date.now.toString())*/]]
     });
   }
 
   save() {
     console.log(this.newReservationForm);
-    console.log('Salvato: ' + JSON.stringify(this.newReservationForm.value));
-    if (this.newReservationForm.valid) {
-      this.reservation = this.newReservationForm.value;
-    }
+   
+
+    this.reservation.fieldId = this.court.id;
+    this.reservation.memberId = this.member.id;
+    this.reservation.isDouble = this.newReservationForm.value.checkTennis;
+    this.reservation.date = this.date;
+    console.log('Salvato: ' + JSON.stringify(this.reservation));
+
+    
     this.reservationService.addReservation(this.reservation).subscribe();
+    
   }
 
   public createModel(newCourts: Court[]) {
@@ -60,12 +69,16 @@ export class InsertReservationReactiveComponent implements OnInit {
 
   public populateMembers(members: Member[]) {
     this.members = members;
-    this.member = members[0];
+    //this.member = members[0];
   }
 
   public populateCourts(courts: Court[]) {
-    this.courts = courts;
-    this.court = courts[0];
+    let selectedCourts=courts;
+    if (this.sportIndex===2)
+      selectedCourts = courts.filter(c=>c.isSeven==this.newReservationForm.value.checkSoccer);
+
+    this.courts = selectedCourts;
+    //this.court = selectedCourts[0];
   }
 
   public onCourtSelectedChange(e) {
@@ -82,19 +95,24 @@ export class InsertReservationReactiveComponent implements OnInit {
 
   public onSportSelectedChange(e) {
     if (e.target.value && e.target.value !== "") {
-      this.sportIndex = this.sports.findIndex(sport => e.target.value == sport);
+      this.sportIndex = this.sports.findIndex(sport => e.target.value === sport);
       this.courtsService.getCourts().subscribe(
-        courts => this.populateCourts(courts.filter(court => court.sport === this.sportIndex)))
+        courts => this.populateCourts(courts.filter(court => court.sport === this.sportIndex)));
     }
   }
 
-  
   public onDateSelectedChange(e) {
     if (e.target.value && e.target.value !== ""){
       this.dateSelected = true;
+      this.date = new Date(e.target.value);
     }
   }
 
+  public onSoccerRadioSelected(e){
+    console.log("radioselected");
+    this.courtsService.getCourts().subscribe(
+      courts => this.populateCourts(courts.filter(court => court.sport === this.sportIndex)));
+  }
 }
 
 function dateRange(dateRight: string): ValidatorFn {

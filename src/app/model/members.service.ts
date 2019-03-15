@@ -49,6 +49,6 @@ export class MembersService {
     const newUrl = this.memberUrl + "/" + member.id;
     console.log("deletedUser " + JSON.stringify(member));
     console.log("Url voluto:" + newUrl);
-    return this.http.delete<Member>(newUrl);
+    return this.http.delete<Member>(newUrl, this.httpOptions);
   }
 }

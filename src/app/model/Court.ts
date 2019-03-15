@@ -5,7 +5,7 @@ export class Court {
                  public name: string = "", 
                  public sport: number = 0, 
                  public price: number = 0,    
-                 public terrain: number = 0) 
+                 public terrain: number = 0,
+                 public isSeven: boolean = false)
                  { }
-    
 }

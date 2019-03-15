@@ -11,20 +11,20 @@
         <label class="col-md-2 col-form-label" for="memberSelectId">Membri: </label>
         <div class="col-md-8">
           <div>
-            <select class="form-control" id="memberSelectId" formControlName="memberName" (change) = "onMemberSelectedChange($event)">
-              <option value="" disabled selected hidden>Seleziona un membro</option>
-                <option *ngFor='let member of members'>{{member.name + " " + member.surname}}</option>
+            <select [(ngModel)] = "member" class="form-control" id="memberSelectId" formControlName="memberName" (change) = "onMemberSelectedChange($event)">
+                <option value="" disabled selected  hidden></option>
+                <option *ngFor='let member of members' [ngValue]="member">{{member.name + " " + member.surname}}</option>
              </select>
           </div>
         </div>
       </div>
-
+ 
       <div class="form-group row mb-2" *ngIf="memberSelected">
         <label class="col-md-2 col-form-label" for="sportSelectId">Sports: </label>
         <div class="col-md-8">
           <div>
             <select class="form-control" id="sportSelectId" formControlName="sportType" (change) = "onSportSelectedChange($event)">
-              <option value="" disabled selected hidden>Seleziona uno sport</option>
+              <option value="" disabled selected hidden></option>
               <option *ngFor='let sport of sports'>{{sport}}</option>
              </select>
           </div>
@@ -34,18 +34,18 @@
       <div class="form-group row mb-2" *ngIf="courts && sportIndex == 2">
         <label class="col-md-2 col-form-label" for="sportSelectId">Modalità: </label>
         <div class="form-check">         
-            <input id ="soccerCheck1Id" name="checkSoccer" type="radio" class="form-check-input" checked><label class="form-check-label" for="soccerCheck1Id">Calcio a 5</label>
+            <input id ="soccerCheck1Id" formControlName = "checkSoccer" name="checkSoccer" (change)="onSoccerRadioSelected($event)" value=0 type="radio" class="form-check-input" [checked]="true"><label class="form-check-label" for="soccerCheck1Id">Calcio a 5</label>
             <br>
-            <input id ="soccerCheck2Id" name="checkSoccer" type="radio" class="form-check-input"><label class="form-check-label" for="soccerCheck2Id">Calcio a 7</label>
+            <input id ="soccerCheck2Id" formControlName = "checkSoccer" name="checkSoccer" (change)="onSoccerRadioSelected($event)" value=1 type="radio" class="form-check-input"><label class="form-check-label" for="soccerCheck2Id">Calcio a 7</label>
         </div>
       </div>
 
       <div class="form-group row mb-2" *ngIf="courts && sportIndex == 0">
         <label class="col-md-2 col-form-label" for="sportSelectId">Modalità: </label>
         <div class="form-check">         
-            <input id ="tennisCheck1Id" name="checkTennis" type="radio" class="form-check-input" checked><label class="form-check-label" for="tennisCheck1Id">Singolo</label>
+            <input id ="tennisCheck1Id" formControlName = "checkTennis" name="checkTennis" value="false" type="radio" class="form-check-input" [checked]="true"><label class="form-check-label" for="tennisCheck1Id">Singolo</label>
             <br>
-            <input id ="tennisCheck2Id" name="checkTennis" type="radio" class="form-check-input"><label class="form-check-label" for="tennisCheck2Id">Doppio</label>
+            <input id ="tennisCheck2Id" formControlName = "checkTennis" name="checkTennis" value="true" type="radio" class="form-check-input"><label class="form-check-label" for="tennisCheck2Id">Doppio</label>
         </div>
       </div>
 
@@ -53,9 +53,9 @@
         <label class="col-md-2 col-form-label" for="courtSelectId">Campi: </label>
         <div class="col-md-8">
           <div>
-            <select class="form-control" id="courtSelectId" formControlName="courtName" (change) = "onCourtSelectedChange($event)">
+            <select [(ngModel)] = "court" class="form-control" id="courtSelectId" formControlName="courtName" (change) = "onCourtSelectedChange($event)">
               <option value="" disabled selected hidden>Seleziona un campo</option>
-              <option *ngFor='let court of courts'>{{court.name}}</option>
+              <option *ngFor='let court of courts'[ngValue]="court">{{court.name}}</option>
              </select>
           </div>
         </div>
@@ -66,12 +66,12 @@
         <div class="col-md-8">
           <div>
             <input type="datetime-local" class="form-control input-sm" id="dateSelectId" 
-            formControlName="date" (change) = "onDateSelectedChange($event)"/>
-          <span class="invalid-feedback">
-            <span *ngIf="newReservationForm.get('date').errors?.required">
+            formControlName="date" (change)="onDateSelectedChange($event)">
+          <!--<span class="invalid-feedback">
+            <span *ngIf="!!newReservationForm.get('date').errors?.required">
                 Data non valida
             </span>
-          </span>
+          </span>-->
          
           </div>
         </div>
@@ -80,15 +80,10 @@
 
       <div class="form-group row mb-2"  *ngIf="dateSelected">
         <div class="offset-md-2 col-md-4">
-          <button class="btn btn-primary mr-3" type="submit" style="width:80px"
-            [title]="newReservationForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
-            [disabled]="!newReservationtForm.valid">
+          <button class="btn btn-primary mr-3" type="submit" style="width:80px">Salva</button>
+
             
-            Salva
-          </button>
-          <!--<button class="btn btn-outline-secondary" type="button" (click)="populateTestData()">
-            Test Data
-          </button>-->
+
         </div>
       </div>
 
