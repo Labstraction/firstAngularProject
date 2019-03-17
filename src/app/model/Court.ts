@@ -6,6 +6,8 @@ export class Court {
                  public sport: number = 0, 
                  public price: number = 0,    
                  public terrain: number = 0,
+                 public sportString: string = "",
+                 public terrainString: string = "",
                  public isSeven: boolean = false)
                  { }
 }

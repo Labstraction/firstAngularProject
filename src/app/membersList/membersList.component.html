@@ -1,27 +1,28 @@
-<div style="text-align:center">
-</div>
+<div>
+  <h2>Questi sono i membri iscritti: </h2>
+    <h6 style="padding-left: 1100px"> <a [routerLink]="['/member-insert-reactive', 0]">
+    <button class="btn btn-outline-info">Aggiungi membro</button></a> 
+    </h6>
+</div>  
+
 <div *ngIf="members">
-    <h2>Questi sono i membri iscritti: </h2>
 <table class='table'>
   <thead>
     <tr>
       <th>Nome</th>
       <th>Cognome</th>
       <th>Data di Registrazione</th>
-
     </tr>
   </thead>
+  
   <tbody>
     <tr *ngFor='let member of members'>
       <td> <a [routerLink]="['/members',member.id]">{{member.name}}</a></td>
       <td>{{member.surname}}</td>
-      <td>{{member.dateOfRegistration}}</td>
+      <td>{{member.dateOfRegistration | date: 'dd-MM-yyyy'}}</td>
 
     </tr>
   </tbody>
 </table>
-
-<br>
-<a [routerLink]="['/member-insert-reactive', 0]"><button>Nuovo membro</button></a>
 
 </div>

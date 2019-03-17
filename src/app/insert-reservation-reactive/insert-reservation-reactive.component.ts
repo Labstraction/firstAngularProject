@@ -6,6 +6,7 @@ import { Challenge } from "../model/Challenge";
 import { ReservationsService } from "../model/reservations.service";
 import { CourtsService } from "../model/courts.service";
 import { MembersService } from "../model/members.service";
+import { ChallengesService } from "../model/challenges.service";
 import { Member } from '../model/Member';
 
 @Component({
@@ -22,7 +23,8 @@ export class InsertReservationReactiveComponent implements OnInit {
   court: Court;
   members: Member[];
   member: Member;
-  sports = ["Tennis", "Paddle", "Soccer"];
+  challenge: Challenge;
+  sports = ["Tennis", "Paddle", "Calcetto"];
   sportIndex = -1;
   date: Date;
 
@@ -30,7 +32,8 @@ export class InsertReservationReactiveComponent implements OnInit {
   courtSelected: boolean;
   dateSelected: boolean;
 
-  constructor(private fb: FormBuilder, private reservationService: ReservationsService, private courtsService: CourtsService, private membersService: MembersService) { }
+
+  constructor(private fb: FormBuilder, private reservationService: ReservationsService, private courtsService: CourtsService, private membersService: MembersService, private challengesService: ChallengesService) { }
 
 
   ngOnInit() {
@@ -44,27 +47,30 @@ export class InsertReservationReactiveComponent implements OnInit {
       courtName: ['', [Validators.required]],
       checkTennis: [0, [Validators.required]],
       checkSoccer: [0, [Validators.required]],
+      //checkChallenge: [0],
       date: [null, [Validators.required/*, dateRange(Date.now.toString())*/]]
     });
   }
 
   save() {
-    console.log(this.newReservationForm);
-   
 
-    this.reservation.fieldId = this.court.id;
+    console.log(this.newReservationForm);
+
+    this.reservation.courtId = this.court.id;
     this.reservation.memberId = this.member.id;
     this.reservation.isDouble = this.newReservationForm.value.checkTennis;
     this.reservation.date = this.date;
     console.log('Salvato: ' + JSON.stringify(this.reservation));
-
     
     this.reservationService.addReservation(this.reservation).subscribe();
+
+    //this.challengesService.addChallenge(this.challenge).subscribe();
     
   }
 
   public createModel(newCourts: Court[]) {
-    this.courts = newCourts; this.court = this.courts[0];
+    this.courts = newCourts; 
+    this.court = this.courts[0];
   }
 
   public populateMembers(members: Member[]) {
@@ -100,6 +106,12 @@ export class InsertReservationReactiveComponent implements OnInit {
         courts => this.populateCourts(courts.filter(court => court.sport === this.sportIndex)));
     }
   }
+
+  // public onChallengeSelected(e) {
+  //   if (e.target.value && e.target.value !== "") {
+  //     this.challengeSelected = true;
+  //   }
+  // }
 
   public onDateSelectedChange(e) {
     if (e.target.value && e.target.value !== ""){

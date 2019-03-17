@@ -1,39 +1,53 @@
-<div class='card'
-     *ngIf='reservation'>
+<div class='card' *ngIf='reservation'>
   <div class='card-header'>
-    {{pageTitle }}
+    <h5>{{pageTitle}}</h5>
   </div>
 
   <div class='card-body'>
     <div class='row'>
-      <div class='col-md-8'>
+      <div class='col-md-5'>
         <div class='row'>
-          <div class='col-md-4'>Campo prenotato: {{reservation.fieldName}}</div>
-        </div>
-        <div class='row'>
-          <div class='col-md-4'>Da: {{reservation.memberName}}</div>
+          <div class='col-md-7'><b>Campo prenotato:</b> {{reservation.courtName}}</div>
         </div>
 
         <div class='row'>
-          <div class='col-md-4'>In data: {{reservation.date}}</div>
+            <div class='col-md-5'><b>Tipo di sport:</b> {{reservation.courtSportString}}</div>
         </div>
 
-      </div>
+        <div class='row'>
+          <div class='col-md-4'><b>Da:</b> {{reservation.memberName}} {{reservation.memberSurname}}</div>
+        </div>
 
-      <div class='col-md-4'>
-        <img class='center-block img-responsive'
-             [style.width.px]='200'
-             [style.margin.px]='2'
-             [src]=''>
-      </div>
-    </div>
-  </div>
+        <div class='row'>
+          <div class='col-md-4'><b>In data:</b> {{reservation.date |date: 'dd-MM-yyyy '}}</div>
+        </div>
 
-  <div class='card-footer'>
-    <button class='btn btn-outline-secondary'
-            (click)='onBack()'
-            style='width:80px'>
-      <i class='fa fa-chevron-left'></i> Back
-    </button>
+        <div class='row'>
+            <div class='col-md-4'><b>Ora:</b> {{reservation.date |date: 'HH:mm'}}</div>
+          </div>
+
+        <div class='row'>
+            <div class='col-md-4'><b>Costo:</b> {{reservation.price | currency:'EUR':'symbol'}}</div>
+          </div>
+
+        <div class='row'>
+            <div class='col-md-7'><b>Numero massimo giocatori:</b> {{reservation.maxPlayer}}</div>
+          </div>
+        </div>
+
+        <div>
+            <!-- <a [routerLink]="['/reservation-insert-reactive', reservation.id]">
+              <button class='btn btn-outline-secondary' style='width:90px'>
+                <i class='fa fa-chevron-left'></i> Modifica
+              </button>
+            </a> -->
+            <br><br>
+            <button class='btn btn-danger'
+                    style='width:90px' (click)="confirmDeleteReservation($event, reservation)">
+              <i class='fa fa-chevron-left'></i> Cancella
+            </button>
+        </div>
+
+    </div>   
   </div>
 </div>

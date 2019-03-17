@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MembersService } from '../model/members.service';
-import { IMember} from '../model/IMember';
+import { Member} from '../model/Member';
 import { ConfirmationDialogService } from "../confirmation-dialog/confirmation-dialog.service";
 
 
@@ -13,7 +13,7 @@ import { ConfirmationDialogService } from "../confirmation-dialog/confirmation-d
 export class MemberDetailsComponent implements OnInit {
   pageTitle = 'Dettagli utente';
   errorMessage = '';
-  member: IMember | undefined;
+  member: Member | undefined;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -36,10 +36,6 @@ export class MemberDetailsComponent implements OnInit {
     this.confirmationDialogService.confirm('Conferma', "Cancellare il membro " + member.name + " " + member.surname + "?")
     .then((confirmed) => (this.membersService.deleteMember(member).subscribe(), confirmed))
     .catch(() => console.log('Cancellazione annullata'))
-  }
-
-  onBack(): void {
-    this.router.navigate(['/Members']);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ICourt } from '../model/ICourt';
 import { CourtsService } from '../model/courts.service';
+import { Court} from '../model/Court'
 
 @Component({
   selector: 'app-courtsList',
@@ -12,25 +12,17 @@ export class CourtsListComponent implements OnInit{
 
   constructor(private courtsService: CourtsService) {}
 
-  courts : ICourt[];
-  court : ICourt;
+  courts : Court[];
+  court : Court;
   
 
-  public displayName(event, court): void {
-    alert(court.name);
-  }
-
-  public onMaxPlayerClicked(string:string):void{
-    alert(string);
-  } 
-  
   ngOnInit(): void {
     this.courtsService.getCourts().subscribe(
       newCourts => this.createModel(newCourts),
       error => console.log(error))
   }
 
-  public createModel(newCourts : ICourt[]){
+  public createModel(newCourts : Court[]){
     this.courts = newCourts; this.court = this.courts[0];
   }
 }

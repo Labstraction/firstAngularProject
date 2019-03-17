@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IChallenge } from '../model/IChallenge';
+import { Challenge } from '../model/Challenge';
 import { ChallengesService } from '../model/challenges.service';
 
 @Component({
@@ -12,8 +12,8 @@ export class ChallengeListComponent implements OnInit{
 
   constructor(private challengesService: ChallengesService) {}
 
-  challenges : IChallenge[];
-  challenge : IChallenge;
+  challenges : Challenge[];
+  challenge : Challenge;
   
   ngOnInit(): void {
     this.challengesService.getChallenges().subscribe(
@@ -21,7 +21,7 @@ export class ChallengeListComponent implements OnInit{
       error => console.log(error));
   }
 
-  public createModel(newchallenges : IChallenge[]){
+  public createModel(newchallenges : Challenge[]){
     this.challenges = newchallenges; this.challenge = this.challenges[0];
   }
 }

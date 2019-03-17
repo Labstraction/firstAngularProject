@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MembersService } from '../model/members.service';
-import { IMember } from '../model/IMember';
+import { Member } from '../model/Member';
 
 @Component({
   selector: 'app-membersList',
@@ -12,8 +12,8 @@ export class MembersListComponent implements OnInit {
 
   constructor(private membersService: MembersService) {}
 
-  members : IMember[];
-  member : IMember;
+  members : Member[];
+  member : Member;
   
 
   ngOnInit(): void {
@@ -22,7 +22,8 @@ export class MembersListComponent implements OnInit {
       error => console.log(error))
   }
 
-  public createModel(newMembers : IMember[]){
-    this.members = newMembers; this.member = this.members[0];
+  public createModel(newMembers : Member[]){
+    this.members = newMembers; 
+    this.member = this.members[0];
   }
 }

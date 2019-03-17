@@ -1,37 +1,27 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-</div>
-<div *ngIf="courts">
-<h2>Questi sono i campi disponibili: </h2>
+<div>
+    <h2>Questi sono i campi disponibili: </h2> 
+      <h6 style="padding-left: 1100px"> <a [routerLink]="['/court-insert-reactive', 0]">
+        <button class="btn btn-outline-info">Aggiungi campo</button></a> 
+      </h6>
+</div>  
 
+<div *ngIf="courts">
 <table class='table'>
   <thead>
     <tr>
       <th>Nome campo</th>
       <th>Sport</th>
       <th>Prezzo</th>
-      <!-- <th>Ulteriori Info</th> -->
-      <!-- <th>Bottone</th> -->
-      <!-- <th>Max Players</th> -->
     </tr>
   </thead>
+  
   <tbody>
     <tr *ngFor='let court of courts'>
-      <td [ngStyle]="{'color': court._sportType === 'tennis' ? 'black' : 'red'}"> <a [routerLink]="['/courts',court.id]">{{court.name}}</a></td>
+      <td> <a [routerLink]="['/courts',court.id]">{{court.name}}</a></td>
       <td>{{court.sportString}}</td>
-      <td>{{court.price}}</td>
-      <!-- <td *ngIf="court.sportType==='tennis'"><input type="checkbox" [checked]="court.isCovered" onclick="return false;">
-        <label>Coperto</label></td>
-      <td *ngIf="court.sportType==='soccer'"><input type="checkbox" [checked]="court.isSeven" onclick="return false;">
-        <label>Calcio a sette</label></td>
-      <td><button (click)="displayName($event,court)">Click</button></td>
-      <td><app-max-player [maxPlayer]='court.maxPlayer()'
-        [sportType]='court.sportType'
-        (maxPlayerClicked)='onMaxPlayerClicked($event)'>
-      </app-max-player></td> -->
+      <td>{{court.price | currency:'EUR':'symbol'}}</td>
     </tr>
   </tbody>
 </table>
-<br>
-<a [routerLink]="['/court-insert-reactive', 0]"><button>Nuovo campo</button></a>
+
 </div>

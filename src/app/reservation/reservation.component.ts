@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationsService } from '../model/reservations.service';
-import { IReservation } from '../model/IReservation';
+import { Reservation } from '../model/Reservation';
 
 @Component({
   selector: 'app-reservation',
@@ -13,17 +13,16 @@ title = "Uber Sport Manager";
 
   constructor(private reservationsService: ReservationsService) {}
 
-  reservations : IReservation[];
-  reservation : IReservation;
+  reservations : Reservation[];
+  reservation : Reservation;
   
-
   ngOnInit(): void {
     this.reservationsService.getReservations().subscribe(
       newReservations => this.createModel(newReservations),
       error => console.log(error))
   }
 
-  public createModel(newReservations : IReservation[]){
+  public createModel(newReservations : Reservation[]){
     this.reservations = newReservations; this.reservation = this.reservations[0];
   }
 }

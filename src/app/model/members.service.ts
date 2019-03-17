@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { IMember} from './IMember';
 import { Member} from './Member';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
+import { HttpClient,  HttpParams } from '@angular/common/http';
+import { Observable} from 'rxjs';
 import { HttpHeaders } from "@angular/common/http";
 
 
@@ -21,8 +19,8 @@ export class MembersService {
 
   constructor(private http: HttpClient) { }
 
-  public getMembers(): Observable<IMember[]> {
-    return this.http.get<IMember[]>(this.memberUrl)
+  public getMembers(): Observable<Member[]> {
+    return this.http.get<Member[]>(this.memberUrl)
   }
 
   public addMember(member : Member): Observable<Member> {
@@ -44,8 +42,7 @@ export class MembersService {
   }
 
   public deleteMember(member : Member): Observable<Member> {
-    
- 
+     
     const newUrl = this.memberUrl + "/" + member.id;
     console.log("deletedUser " + JSON.stringify(member));
     console.log("Url voluto:" + newUrl);

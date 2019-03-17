@@ -1,25 +1,28 @@
-<div style="text-align:center">
-</div>
+<div>
+    <h2>Queste sono le prenotazioni registrate: </h2> 
+      <h6 style="padding-left: 1100px"> <a [routerLink]="['/reservation-insert-reactive', 0]">
+        <button class="btn btn-outline-info">Aggiungi prenotazione</button></a> 
+      </h6>
+</div>  
+
 <div *ngIf="reservations">
-    <h2>Queste sono le prenotazioni registrate: </h2>
 <table class='table'>
   <thead>
     <tr>
-      <th>Nome Membro</th>
-      <th>Nome Campo</th>
+      <th>Membro</th>
+      <th>Campo</th>
       <th>Data di Prenotazione</th>
+      <th>Dettagli</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor='let reservation of reservations'>
-      <td> <a [routerLink]="['/members',reservation.memberId]">{{reservation.memberName}}</a></td>
-      <td><a [routerLink]="['/courts',reservation.fieldId]">{{reservation.fieldName}}</a></td>
-      <td>{{reservation.date}}</td>
+      <td> <a [routerLink]="['/members',reservation.memberId]">{{reservation.memberName}} {{reservation.memberSurname}}</a></td>
+      <td> <a [routerLink]="['/courts', reservation.courtId]">{{reservation.courtName}}</a></td>
+      <td>{{reservation.date |date: 'dd-MM-yyyy HH:mm'}}</td>
+      <td> <a [routerLink]="['/reservations', reservation.id]">Vedi</a></td>
     </tr>
   </tbody>
 </table>
-
-<br>
-<a [routerLink]="['/member-reservation-reactive']"><button>Nuova Prenotazione</button></a>
 
 </div>

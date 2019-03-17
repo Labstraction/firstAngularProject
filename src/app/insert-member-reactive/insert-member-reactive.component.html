@@ -88,7 +88,7 @@
       <div class="form-group row mb-2">
         <div class="offset-md-2 col-md-4">
           <button class="btn btn-primary mr-3" type="submit" style="width:80px"
-            [title]="newMemberForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+            [title]="newMemberForm.valid ? 'Salva i dati' : 'Controlla che i dati inseriti siano corretti'"
             [disabled]="!newMemberForm.valid">
             Salva
           </button>          
@@ -98,7 +98,3 @@
   </div>
 </div>
 
-<!--<br>Dirty: {{ newMemberForm.dirty }}
-<br>Touched: {{ newMemberForm.touched }}
-<br>Valid: {{ newMemberForm.valid }}
-<br>Value: {{ newMemberForm.value | json }}-->
