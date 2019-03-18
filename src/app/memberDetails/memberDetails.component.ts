@@ -30,12 +30,21 @@ export class MemberDetailsComponent implements OnInit {
         error => console.log(error))}
   }
 
+  public confirmAndRedirect(){
+    alert("Operazione effettuata con successo!");
+    this.router.navigate(['/members']);
+  }
 
   public confirmDeleteMember(event, member): void {
   
     this.confirmationDialogService.confirm('Conferma', "Cancellare il membro " + member.name + " " + member.surname + "?")
-    .then((confirmed) => (this.membersService.deleteMember(member).subscribe(), confirmed))
+    .then((confirmed) => (this.membersService.deleteMember(member).subscribe(
+      () => this.confirmAndRedirect(),
+      error=> console.log(error)
+    ), confirmed))
     .catch(() => console.log('Cancellazione annullata'))
   }
+
+  
 
 }

@@ -1,8 +1,7 @@
 <div>
     <h2>Queste sono le prenotazioni registrate: </h2> 
-      <h6 style="padding-left: 1100px"> <a [routerLink]="['/reservation-insert-reactive', 0]">
-        <button class="btn btn-outline-info">Aggiungi prenotazione</button></a> 
-      </h6>
+    <div style="text-align:right"><a [routerLink]="['/reservation-insert-reactive', 0]">
+      <button class="btn btn-outline-info">Aggiungi prenotazione</button></a> </div>
 </div>  
 
 <div *ngIf="reservations">

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { Court } from "../model/Court";
 import { CourtsService } from "../model/courts.service";
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-insert-court-reactive',
@@ -16,7 +16,7 @@ export class InsertCourtReactiveComponent implements OnInit {
   id: number;
   sportIndex = -1;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private courtService: CourtsService) { }
+  constructor(private router:Router, private route: ActivatedRoute, private fb: FormBuilder, private courtService: CourtsService) { }
 
   ngOnInit() {
     const param = this.route.snapshot.paramMap.get('id');
@@ -66,7 +66,11 @@ export class InsertCourtReactiveComponent implements OnInit {
       if (this.newCourtForm.valid) {
         this.court = this.newCourtForm.value;
       }
-      this.courtService.addCourt(this.court).subscribe();
+      this.courtService.addCourt(this.court).subscribe(
+        court => this.confirmAndRedirect(),
+        error => console.log(error)
+        
+      );
     }
     
     else {
@@ -78,7 +82,10 @@ export class InsertCourtReactiveComponent implements OnInit {
         this.court.isSeven = this.newCourtForm.value.isSeven
         this.court.terrain = this.newCourtForm.value.terrain;
       }
-      this.courtService.editCourt(this.court).subscribe();
+      this.courtService.editCourt(this.court).subscribe(
+        court => this.confirmAndRedirect(),
+        error => console.log(error)
+      );
     }
   }
 
@@ -92,6 +99,10 @@ export class InsertCourtReactiveComponent implements OnInit {
     console.log(this.sportIndex);
   }
 
+  public confirmAndRedirect(){
+    alert("Operazione effettuata con successo!");
+    this.router.navigate(['/courts']);
+  }
 }
 
   // setNotification(notifyVia: string): void {
@@ -103,6 +114,9 @@ export class InsertCourtReactiveComponent implements OnInit {
   //   }
   //   phoneControl.updateValueAndValidity();
   // }
+
+  
+
 
 function priceRange(min: number, max: number): ValidatorFn {
   return (c: AbstractControl): { [key: string]: boolean } | null => {

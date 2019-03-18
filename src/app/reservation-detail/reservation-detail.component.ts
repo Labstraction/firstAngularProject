@@ -29,10 +29,18 @@ export class ReservationDetailComponent implements OnInit {
         error => console.log(error))}
   }
 
+  public confirmAndRedirect(){
+    alert("Operazione effettuata con successo!");
+    this.router.navigate(['/reservations']);
+  }
   public confirmDeleteReservation(event, reservation): void {
   
     this.confirmationDialogService.confirm('Conferma', "Cancellare la prenotazione di " + reservation.memberName + " " + reservation.memberSurname + "?")
-    .then((confirmed) => (this.reservationsService.deleteReservation(reservation).subscribe(), confirmed))
+    .then((confirmed) => (this.reservationsService.deleteReservation(reservation).subscribe(
+      () => this.confirmAndRedirect(),
+      error=> console.log(error)
+    ), 
+       confirmed))
     .catch(() => console.log('Cancellazione annullata'))
   }
 

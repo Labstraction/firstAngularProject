@@ -8,6 +8,7 @@ import { CourtsService } from "../model/courts.service";
 import { MembersService } from "../model/members.service";
 import { ChallengesService } from "../model/challenges.service";
 import { Member } from '../model/Member';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-insert-reservation-reactive',
@@ -33,7 +34,7 @@ export class InsertReservationReactiveComponent implements OnInit {
   dateSelected: boolean;
 
 
-  constructor(private fb: FormBuilder, private reservationService: ReservationsService, private courtsService: CourtsService, private membersService: MembersService, private challengesService: ChallengesService) { }
+  constructor(public router: Router, private fb: FormBuilder, private reservationService: ReservationsService, private courtsService: CourtsService, private membersService: MembersService, private challengesService: ChallengesService) { }
 
 
   ngOnInit() {
@@ -61,12 +62,29 @@ export class InsertReservationReactiveComponent implements OnInit {
     this.reservation.isDouble = this.newReservationForm.value.checkTennis;
     this.reservation.date = this.date;
     console.log('Salvato: ' + JSON.stringify(this.reservation));
+    let ds = JSON.stringify(this.reservation);
+    let d = JSON.parse(ds);
     
-    this.reservationService.addReservation(this.reservation).subscribe();
+    this.reservationService.addReservation(this.reservation).subscribe(
+      reservation => { 
+        this.confirmAndRedirect();
+      },
+       error => {
+        console.log(error);
+        console.log("ERRORE!");
+       }
+      
+    );
 
     //this.challengesService.addChallenge(this.challenge).subscribe();
     
   }
+
+  public confirmAndRedirect(){
+    alert("Operazione effettuata con successo!");
+    this.router.navigate(['/reservations']);
+  }
+
 
   public createModel(newCourts: Court[]) {
     this.courts = newCourts; 

@@ -11,6 +11,7 @@ export class MasterPageComponent implements OnInit {
 
   pageTitle = "UberSportManager";
   public logoImage = require("./images/UBSHeader.jpg")
+  public footerImage = require("./images/footer.png")
   constructor() { }
 
   ngOnInit() {

@@ -1,18 +1,29 @@
-<div>
-    <img alt="Angular Logo" class="uberLogo"
-        src="{{logoImage}}"> 
+<html>
+  <body>
+      <div id = "container">
 
-    <ul class='nav nav-pills'>
-    <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/welcome']">Home</a></li>
-    <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/courts']">Campi</a></li>
-    <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/members']">Membri</a></li>
-    <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/reservations']">Prenotazioni</a></li>
-    <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/challenges']">Sfide</a></li>
-  </ul>
-</div>
-
-
-<div class='container'>
-<router-outlet></router-outlet>
-</div>
-<router-outlet></router-outlet>
+          <div id = "header">
+              <img alt="Angular Logo" class="uberLogo"
+                  src="{{logoImage}}"> 
+          
+              <ul class='nav nav-pills'>
+              <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/welcome']">Home</a></li>
+              <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/courts']">Campi</a></li>
+              <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/members']">Membri</a></li>
+              <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/reservations']">Prenotazioni</a></li>
+              <!-- <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/challenges']">Sfide</a></li> -->
+            </ul>
+          </div>
+          
+          <div id = "body">
+              <router-outlet></router-outlet>
+          </div>
+          
+          
+          <div id="footer" class="navbar fixed-bottom">
+            <img height="100px" width=auto alt="footer"
+              src="{{footerImage}}"> 
+          </div>
+          </div>
+  </body>
+</html>

@@ -38,10 +38,18 @@ export class CourtDetailsComponent implements OnInit {
   //   }
   // }
 
+  public confirmAndRedirect(){
+    alert("Operazione effettuata con successo!");
+    this.router.navigate(['/courts']);
+  }
+
   public confirmDeleteCourt(event, court): void {
   
     this.confirmationDialogService.confirm('Conferma', "Cancellare il campo " + court.name + "?")
-    .then((confirmed) => (this.courtsService.deleteCourt(court).subscribe(), confirmed))
+    .then((confirmed) => (this.courtsService.deleteCourt(court).subscribe(
+    () => this.confirmAndRedirect(),
+      error=> console.log(error)
+    ), confirmed))
     .catch(() => console.log('Cancellazione annullata'))
   }
 

@@ -61,7 +61,10 @@ export class InsertMemberReactiveComponent implements OnInit {
       if (this.newMemberForm.valid) {
         this.member = this.newMemberForm.value;
       }
-      this.memberService.addMember(this.member).subscribe();
+      this.memberService.addMember(this.member).subscribe(
+        member => this.confirmAndRedirect(),
+        error => console.log(error)
+        );
     }
     else {
       if (this.newMemberForm.valid) {
@@ -71,8 +74,17 @@ export class InsertMemberReactiveComponent implements OnInit {
         this.member.dateOfBirth = this.newMemberForm.value.dateOfBirth;
         this.member.dateOfRegistration = this.newMemberForm.value.dateOfRegistration;
       }
-      this.memberService.editMember(this.member).subscribe();
+      this.memberService.editMember(this.member).subscribe(
+        member => this.confirmAndRedirect(),
+        error => console.log(error)
+      );
     }
   }
+
+  public confirmAndRedirect(){
+    alert("Operazione effettuata con successo!");
+    this.router.navigate(['/members']);
+  }
 }
+
 
